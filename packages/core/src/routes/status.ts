@@ -3,8 +3,8 @@ import koaGuard from '#src/middleware/koa-guard.js';
 import type { AnonymousRouter, RouterInitArgs } from './types.js';
 
 export default function statusRoutes<T extends AnonymousRouter>(...[router]: RouterInitArgs<T>) {
-  router.get('/status', koaGuard({ status: 204 }), async (ctx, next) => {
-    ctx.status = 204;
+  router.get('/status', koaGuard({ status: 200 }), async (ctx, next) => {
+    ctx.status = 200;
 
     return next();
   });

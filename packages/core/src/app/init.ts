@@ -49,7 +49,7 @@ export default async function initApp(app: Koa): Promise<void> {
 
   app.use(async (ctx, next) => {
     if (EnvSet.values.isDomainBasedMultiTenancy && ['/status', '/'].includes(ctx.URL.pathname)) {
-      ctx.status = 204;
+      ctx.status = 200;
 
       return next();
     }

@@ -1,5 +1,5 @@
 ###### [STAGE] Build ######
-FROM node:20-alpine as builder
+FROM node:20-alpine AS builder
 WORKDIR /etc/logto
 ENV CI=true
 
@@ -12,7 +12,8 @@ RUN npm add --location=global pnpm@^9.0.0
 RUN apk add --no-cache python3 make g++ rsync
 
 COPY . .
-
+RUN tar -tf <(tar -c .) | grep generate.sh
+RUN pnpm install --no-frozen-lockfile
 ### Install dependencies and build ###
 RUN pnpm i
 
@@ -37,10 +38,11 @@ RUN NODE_ENV=production pnpm i
 RUN rm -rf .scripts pnpm-*.yaml packages/cloud
 
 ###### [STAGE] Seal ######
-FROM node:20-alpine as app
+FROM node:20-alpine AS app
 WORKDIR /etc/logto
 COPY --from=builder /etc/logto .
 RUN mkdir -p /etc/logto/packages/cli/alteration-scripts && chmod g+w /etc/logto/packages/cli/alteration-scripts
 EXPOSE 3001
+EXPOSE 3002
 ENTRYPOINT ["npm", "run"]
 CMD ["start"]

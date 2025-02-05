@@ -1,5 +1,5 @@
 # dependencies
-node_modules
+**/node_modules
 
 # testing
 /packages/**/coverage
@@ -9,6 +9,7 @@ node_modules
 /packages/**/report.json
 
 # production
+!packages/schemas/generate.sh
 /packages/**/build
 /packages/**/lib
 /packages/**/dist
