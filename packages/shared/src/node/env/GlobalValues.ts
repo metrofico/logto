@@ -96,7 +96,7 @@ export default class GlobalValues {
   /** @deprecated Use the built-in user default role configuration (`Roles.isDefault`) instead. */
   public readonly userDefaultRoleNames = getEnvAsStringArray('USER_DEFAULT_ROLE_NAMES');
   public readonly developmentUserId = getEnv('DEVELOPMENT_USER_ID');
-  public readonly trustProxyHeader = yes(getEnv('TRUST_PROXY_HEADER'));
+  public readonly trustProxyHeader = yes(getEnv('TRUST_PROXY_HEADER', 'true'));
   public readonly ignoreConnectorVersionCheck = yes(getEnv('IGNORE_CONNECTOR_VERSION_CHECK'));
 
   /** Maximum number of tenants to keep in the tenant pool. */

@@ -5,17 +5,15 @@ ENV CI=true
 
 # No need for Docker build
 ENV PUPPETEER_SKIP_DOWNLOAD=true
-
 ### Install toolchain ###
 RUN npm add --location=global pnpm@^9.0.0
 # https://github.com/nodejs/docker-node/blob/main/docs/BestPractices.md#node-gyp-alpine
 RUN apk add --no-cache python3 make g++ rsync
 
 COPY . .
-RUN tar -tf <(tar -c .) | grep generate.sh
-RUN pnpm install --no-frozen-lockfile
+
 ### Install dependencies and build ###
-RUN pnpm i
+RUN pnpm install --no-frozen-lockfile
 
 ### Set if dev features enabled ###
 ARG dev_features_enabled
