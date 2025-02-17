@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: logto-service-ingress-dns
+  namespace: logto
+  annotations:
+    ingress.gcp.kubernetes.io/pre-shared-cert: kfc-ecuador-24-25
+    kubernetes.io/ingress.global-static-ip-name: "dev-logto-ec"
+spec:
+  rules:
+    - host: dev-logto.kfc.com.ec
+      http:
+        paths:
+          - path: /*
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: logto-service
+                port:
+                  number: 3002
+    - host: dev-api-logto.kfc.com.ec
+      http:
+        paths:
+          - path: /*
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: logto-service
+                port:
+                  number: 3001
