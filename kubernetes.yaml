@@ -13,8 +13,8 @@ stringData:
   NODE_TLS_REJECT_UNAUTHORIZED: "0"
   TRUST_PROXY_HEADER: "true"
   DB_URL: "postgres://postgres:admin@192.168.101.29:5432/logto"
-  ENDPOINT: "https://apilogto.kfc.com.ec"
-  ADMIN_ENDPOINT: "https://logto.kfc.com.ec"
+  ENDPOINT: "https://dev-api-logto.kfc.com.ec"
+  ADMIN_ENDPOINT: "https://dev-logto.kfc.com.ec"
 ---
 apiVersion: apps/v1
 kind: Deployment
